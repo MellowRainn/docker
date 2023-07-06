@@ -1,3 +1,7 @@
+Keys:
+email = test@example.com
+password = password
+
 Preventing Insecure Direct Object References (IDOR) with Laravel Breeze
 
 In my Laravel application, I have taken steps to prevent Insecure Direct Object References (IDOR) vulnerabilities. The following measures have been implemented:
