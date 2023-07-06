@@ -1,0 +1,39 @@
+version: "3.7"
+services:
+    webserver:
+        image: project-php-image
+        container_name: project-php-container
+        networks:
+            - project-network
+        ports:
+            - "8080:80"
+        volumes:
+            - ".:/var/www/html"
+        depends_on:
+            - mariadb
+        env_file:
+            -   .env
+
+    mariadb:
+        image: project-sql-image
+        container_name: project-sql-container
+        volumes:
+            - "/var/lib/mysql"
+        ports:
+            -   "3307:3306"
+        networks:
+            - project-network
+
+    phpmyadmin:
+        image: project-admin-image
+        container_name: project-admin-container
+        networks:
+            - project-network
+        ports:
+            - "8081:80"
+        environment:
+            - PMA_HOST=mariadb
+
+networks:
+    project-network:
+        driver: bridge
